@@ -28,10 +28,13 @@ def update(user, password):
 
 
 def fetch_one(user):
-  document =  Users.find_one({"Username": user})
-  return document
+  document =  Users.find_one({"user": user})
+  if document == None:
+    return bool(False)
+  return bool(True)
 
 
 def remove(user):
   Users.delete_one({"user": user})
   return True
+
