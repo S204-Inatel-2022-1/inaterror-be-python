@@ -27,38 +27,38 @@ app.add_middleware(
 
 
 @app.get("/api/info")
-async def get_info():
-    response = await fetch_all()
+def get_info():
+    response =  fetch_all()
     return response
 
 
 @app.post("/api/info/", response_model=Info)
-async def post_info(info: Info):
-    response = await create(info.dict())
+def post_info(info: Info):
+    response =  create(info.dict())
     if response:
         return response
     raise HTTPException(400, "Erro")
 
 
 @app.put("/api/info/{user}/", response_model=Info)
-async def put_info(user: str, password: str):
-    response = await update(user, password)
+def put_info(user: str, password: str):
+    response = update(user, password)
     if response:
         return response
     raise HTTPException(404, f" {user}not found")
 
 
 @app.get("/api/info/{user}", response_model=Info)
-async def get_info_by_title(user):
-    response = await fetch_one(user)
+def get_info_by_title(user):
+    response =  fetch_one(user)
     if response:
         return response
     raise HTTPException(404, f"There is no info with the title {user}")
 
 
 @app.delete("/api/info/{user}")
-async def delete_info(user):
-    response = await remove(user)
+def delete_info(user):
+    response =  remove(user)
     if response:
         return "Successfully deleted info"
     raise HTTPException(404, f"There is no info with the title {user}")
