@@ -5,3 +5,6 @@ class Info(BaseModel):
     user: str
     password: str
 
+    class Config:
+        orm_mode = True
+

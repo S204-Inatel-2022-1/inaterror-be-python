@@ -31,7 +31,7 @@ def fetch_one(user,password):
   document =  Users.find_one({ "user": user, "password": password })
   if document == None:
     return bool(False)
-  return bool(True)
+  return document
 
 
 def remove(user):
