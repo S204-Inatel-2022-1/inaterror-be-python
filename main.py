@@ -49,8 +49,8 @@ def put_info(user: str, password: str):
 
 
 @app.get("/api/info/{user}", response_model=Info)
-def get_info_by_title(user):
-    response =  fetch_one(user)
+def get_info_by_title(user,password):
+    response =  fetch_one(user,password)
     if response:
         return response
     raise HTTPException(404, f"There is no info with the title {user}")
