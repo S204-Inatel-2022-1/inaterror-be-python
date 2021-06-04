@@ -27,8 +27,8 @@ def update(user, password):
   return document
 
 
-def fetch_one(user):
-  document =  Users.find_one({"user": user})
+def fetch_one(user,password):
+  document =  Users.find_one({ "user": user, "password": password })
   if document == None:
     return bool(False)
   return bool(True)
