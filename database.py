@@ -50,4 +50,4 @@ def remove(user):
   Users.delete_one({"user": user})
   return True
 
-test=0
+test=1
