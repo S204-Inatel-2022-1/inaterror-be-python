@@ -1,9 +1,9 @@
 import pymongo
 from pymongo import MongoClient
-from model import Info
+from model import Info,GhostInfo
 client = pymongo.MongoClient("mongodb+srv://Leolang:3BXQylG45puUydBx@cluster0.mexdq.mongodb.net/InaTerror?retryWrites=true&w=majority")
 db = client.InaTerror
-Fantasmas = db.Fantasmas
+Fantasmas = db.Beta
 Users = db.Alpha
 
 
@@ -13,6 +13,18 @@ def fetch_all():
   for document in cursor:
     userInfo.append(Info(**document))
   return userInfo
+
+def fetch_Ghosts():
+  gInfo = []
+  cursor = Fantasmas.find({})
+  for document in cursor:
+    gInfo.append(GhostInfo(**document))
+  return gInfo
+
+def createGhost(info):
+  document = info
+  result = Fantasmas.insert_one(document)
+  return document
 
 
 def create(info):

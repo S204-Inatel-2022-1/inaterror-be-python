@@ -1,12 +1,14 @@
 from fastapi import FastAPI, HTTPException
 from typing import Optional, List
-from model import Info
+from model import Info,GhostInfo
 from database import (
     create,
     fetch_all,
     update,
     fetch_one,
     remove,
+    fetch_Ghosts,
+    createGhost
 )
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -30,6 +32,18 @@ app.add_middleware(
 def get_info():
     response =  fetch_all()
     return response
+
+@app.get("/api/ginfo")
+def get_info():
+    response =  fetch_Ghosts()
+    return response
+
+@app.post("/api/ginfo/", response_model=GhostInfo)
+def post_info(info: GhostInfo):
+    response =  createGhost(info.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Erro")
 
 
 @app.post("/api/info/", response_model=Info)
