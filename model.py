@@ -16,3 +16,5 @@ class GhostInfo(BaseModel):
 
     class Config:
         orm_mode = True
+
+        test = 0

@@ -76,3 +76,5 @@ def delete_info(user):
     if response:
         return "Successfully deleted info"
     raise HTTPException(404, f"There is no info with the title {user}")
+
+test=0
